@@ -60,11 +60,9 @@ _PUBLIC_ void clock_gettime_mono(struct timespec *tp)
 	}
 #endif
 /* then try the  monotonic clock: */
-#if CUSTOM_CLOCK_MONOTONIC != CLOCK_REALTIME
 	if (clock_gettime(CUSTOM_CLOCK_MONOTONIC,tp) == 0) {
 		return;
 	}
-#endif
 	clock_gettime(CLOCK_REALTIME,tp);
 }
 
