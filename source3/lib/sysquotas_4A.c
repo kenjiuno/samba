@@ -42,6 +42,7 @@
 #endif
 
 #ifdef HAVE_SYS_QUOTA_H
+#define _LINUX_QUOTA_VERSION 2
 #include <sys/quota.h>
 #endif
 
@@ -104,7 +105,7 @@ int sys_get_vfs_quota(const char *path, const char *bdev, enum SMB_QUOTA_TYPE qt
 				return ret;
 			}
 
-			if ((D.dqb_curblocks==0)&&
+			if ((D.dqb_curspace==0)&&
 				(D.dqb_bsoftlimit==0)&&
 				(D.dqb_bhardlimit==0)) {
 				/* the upper layer functions don't want empty quota records...*/
@@ -121,7 +122,7 @@ int sys_get_vfs_quota(const char *path, const char *bdev, enum SMB_QUOTA_TYPE qt
 				return ret;
 			}
 
-			if ((D.dqb_curblocks==0)&&
+			if ((D.dqb_curspace==0)&&
 				(D.dqb_bsoftlimit==0)&&
 				(D.dqb_bhardlimit==0)) {
 				/* the upper layer functions don't want empty quota records...*/
@@ -167,7 +168,7 @@ int sys_get_vfs_quota(const char *path, const char *bdev, enum SMB_QUOTA_TYPE qt
 	dp->ihardlimit = (uint64_t)D.dqb_ihardlimit;
 	dp->isoftlimit = (uint64_t)D.dqb_isoftlimit;
 	dp->curinodes = (uint64_t)D.dqb_curinodes;
-	dp->curblocks = (uint64_t)D.dqb_curblocks;
+	dp->curblocks = (uint64_t)D.dqb_curspace;
 
 
 	dp->qflags = qflags;
