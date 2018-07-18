@@ -155,7 +155,7 @@ int sys_get_vfs_quota(const char *path, const char *bdev, enum SMB_QUOTA_TYPE qt
 	dp->ihardlimit = (uint64_t)D.dqb_ihardlimit;
 	dp->isoftlimit = (uint64_t)D.dqb_isoftlimit;
 	dp->curinodes = (uint64_t)D.dqb_curinodes;
-	dp->curblocks = (uint64_t)D.dqb_curblocks;
+	dp->curblocks = (uint64_t)D.dqb_curspace;
 
 
 	dp->qflags = qflags;
