@@ -45,7 +45,7 @@ extern int glob_pattern_p (const char *__pattern, int __quote)
 #if !defined(__GLIBC__)
 /* Return nonzero if PATTERN contains any metacharacters.
    Metacharacters can be quoted with backslashes if QUOTE is nonzero.  */
-static int
+int
 glob_pattern_p (const char * pattern, int quote)
 	/*@*/
 {
