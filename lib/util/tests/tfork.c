@@ -34,6 +34,10 @@
 #include <pthread.h>
 #endif
 
+#ifndef SA_NOCLDWAIT
+#define SA_NOCLDWAIT 0
+#endif
+
 static bool test_tfork_simple(struct torture_context *tctx)
 {
         pid_t parent = getpid();
