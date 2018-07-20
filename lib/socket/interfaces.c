@@ -269,10 +269,12 @@ static int _get_interfaces(TALLOC_CTX *mem_ctx, struct iface_struct **pifaces)
 		}
 
 		ifaces[total].if_index = if_nametoindex(ifptr->ifa_name);
+#if 0
 		if (ifaces[total].if_index == 0) {
 			DBG_ERR("Failed to retrieve interface index for '%s': "
 				"%s\n", ifptr->ifa_name, strerror(errno));
 		}
+#endif
 
 #ifdef HAVE_ETHTOOL
 		query_iface_speed_from_name(ifptr->ifa_name, &if_speed);

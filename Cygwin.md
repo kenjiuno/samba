@@ -49,3 +49,5 @@ File '/cygdrive/d/Git/samba/bin/default/lib/util/cygsamba-util.dll' does not exi
 Waf: Leaving directory `/cygdrive/d/Git/samba/bin'
 Could not install the file '/home/USER/samba-20180720/lib/cygsamba-util.dll.0.0.1'
 ```
+
+# `ERROR: Could not determine network interfaces, you must use a interfaces config line`

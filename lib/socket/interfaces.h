@@ -22,7 +22,7 @@
 #include "system/network.h"
 
 struct iface_struct {
-	char name[16];
+	char name[64]; // at least longer than "{fa1ec577-8e97-4b83-94fd-de0f3d934bc9}"
 	int flags;
 	struct sockaddr_storage ip;
 	struct sockaddr_storage netmask;
