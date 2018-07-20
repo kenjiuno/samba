@@ -551,7 +551,7 @@ def apply_implib(self):
 
 	self.meths.remove('default_link_install')
 
-	bindir = self.install_path
+	bindir = self.install_path or self.samba_abspath
 	if not bindir: return
 
 	# install the dll in the bin dir
