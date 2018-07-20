@@ -594,7 +594,17 @@ def make_libname(ctx, name, nolibprefix=False, version=None, python=False):
             # special case - version goes before the prefix
             libname = "%s.%s%s" % (root, version, ext)
         else:
-            libname = "%s%s.%s" % (root, ext, version)
+            # using the shlib versioning rule seen in link_task which is using get_target_name at ccroot.py
+            nums = version.split('.')
+            if ctx.env.DEST_BINFMT == 'pe':
+                libname = "%s-%s%s" % (root, nums[0], ext)
+            elif self.env.DEST_OS == 'openbsd':
+                if len(nums) >= 2:
+                    libname = "%s.%s.%s%s" % (root, nums[0], nums[1], ext)
+                else:
+                    libname = "%s.%s%s" % (root, nums[0], ext)
+            else:
+                libname = "%s%s.%s" % (root, ext, version)
     return libname
 Build.BuildContext.make_libname = make_libname
 

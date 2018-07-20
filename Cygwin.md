@@ -26,7 +26,7 @@ $ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
 必要なものだけビルドしてとっととインストールする
 
 ```sh
-$ WAF_MAKE=1 python ./buildtools/bin/waf build install --targets client/smbclient,client/smbclient4,nmblookup,nmblookup4,smbtree
+$ WAF_MAKE=1 python ./buildtools/bin/waf build install --targets client/smbclient,nmblookup,smbtree
 ```
 
 # `cannot find -ltalloc` と申す
@@ -39,4 +39,13 @@ From:
 To:
 ```python
 	bindir = self.install_path or self.samba_abspath
+```
+
+# `File '/cygdrive/d/Git/samba/bin/default/lib/util/cygsamba-util.dll' does not exist`
+
+```
+* installing bin/default/lib/util/cygsamba-util.dll as /home/USER/samba-20180720/lib/cygsamba-util.dll.0.0.1
+File '/cygdrive/d/Git/samba/bin/default/lib/util/cygsamba-util.dll' does not exist
+Waf: Leaving directory `/cygdrive/d/Git/samba/bin'
+Could not install the file '/home/USER/samba-20180720/lib/cygsamba-util.dll.0.0.1'
 ```
