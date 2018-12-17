@@ -236,3 +236,18 @@ def symlink_bin(self):
             return
         os.unlink(bldpath)
     os.symlink(binpath, bldpath)
+
+@feature('verln_lib')
+@after('cshlib')
+def verln_lib(self):
+    libpath = self.link_task.outputs[0].abspath(self.env)
+    
+    fplnk = os.path.join(os.path.dirname(libpath), self.bld.make_libname(self.target))
+    if not os.path.lexists(fplnk) and os.path.basename(libpath) <> os.path.basename(fplnk):
+        os.symlink(os.path.basename(libpath), fplnk)
+    
+    #print("@" + self.target + " " + libpath + " -> " + os.path.join(os.path.dirname(libpath), self.bld.make_libname(self.target)))
+    # from libpath
+    # dll self.bld.make_libname(self.target)
+    #print ("symlink_lib: " + self.target + " " + self.link_task.outputs[0].bld_dir(self.bld.env))
+    # 
