@@ -426,6 +426,7 @@ static struct dirent *vfswrap_readdir(vfs_handle_struct *handle,
 {
 	struct dirent *result;
 
+	errno = 0;
 	START_PROFILE(syscall_readdir);
 	result = readdir(dirp);
 	END_PROFILE(syscall_readdir);
