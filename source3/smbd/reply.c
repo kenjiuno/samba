@@ -1969,7 +1969,7 @@ void reply_search(struct smb_request *req)
 						  check_descend,
 						  ask_sharemode);
 			if (errno != 0) {
-				reply_nterror(req, STATUS_FILE_CORRUPT_ERROR);
+				reply_nterror(req, NT_STATUS_FILE_CORRUPT_ERROR);
 				goto out;
 			}
 			if (!finished) {
