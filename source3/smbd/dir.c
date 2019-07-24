@@ -1240,6 +1240,8 @@ bool get_dir_entry(TALLOC_CTX *ctx,
 				   &mode,
 				   &prev_offset);
 	if (!ok) {
+		DEBUG(1,("get_dir_entry: fail, errno %d\n",
+			 errno));
 		return false;
 	}
 

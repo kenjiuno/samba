@@ -2568,6 +2568,8 @@ NTSTATUS smbd_dirptr_lanman2_entry(TALLOC_CTX *ctx,
 				   &mode,
 				   &prev_dirpos);
 	if (!ok) {
+		DEBUG(1,("smbd_dirptr_lanman2_entry: fail, errno %d\n",
+			 errno));
 		if (errno != 0) {
 			return NT_STATUS_FILE_CORRUPT_ERROR;
 		}
@@ -3288,6 +3290,8 @@ total_data=%u (should be %u)\n", (unsigned int)total_data, (unsigned int)IVAL(pd
 
 	/* Check that the dptr is valid */
 	if(!(dirptr = dptr_fetch_lanman2(sconn, dptr_num))) {
+		DEBUG(1,("call_trans2findnext: dptr_fetch_lanman2 failed errno %d\n",
+			errno));
 		reply_nterror(req, STATUS_NO_MORE_FILES);
 		return;
 	}

@@ -2021,6 +2021,8 @@ void reply_search(struct smb_request *req)
 	}
 
 	if ((numentries == 0) && !mask_contains_wcard) {
+		DEBUG(1,("reply_search: STATUS_NO_MORE_FILES with errno %d\n",
+			errno));
 		reply_botherror(req, STATUS_NO_MORE_FILES, ERRDOS, ERRnofiles);
 		goto out;
 	}
