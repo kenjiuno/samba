@@ -1958,7 +1958,7 @@ void reply_search(struct smb_request *req)
 		}
 
 		for (i=numentries;(i<maxentries) && !finished;i++) {
-			printf("get_dir_entry ->\n");
+			DEBUG(1,("get_dir_entry in\n"));
 			finished = !get_dir_entry(ctx,
 						  dirptr,
 						  mask,
@@ -1969,7 +1969,7 @@ void reply_search(struct smb_request *req)
 						  &date,
 						  check_descend,
 						  ask_sharemode);
-			printf("<- get_dir_entry %d\n", errno);
+			DEBUG(1,("get_dir_entry out %d\n", errno));
 			if (errno != 0) {
 				reply_nterror(req, NT_STATUS_FILE_CORRUPT_ERROR);
 				goto out;
