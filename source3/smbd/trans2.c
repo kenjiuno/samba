@@ -2568,7 +2568,7 @@ NTSTATUS smbd_dirptr_lanman2_entry(TALLOC_CTX *ctx,
 				   &mode,
 				   &prev_dirpos);
 	if (!ok) {
-		if (errno != 0) {
+		if (errno == EIO) {
 			return NT_STATUS_FILE_CORRUPT_ERROR;
 		}
 		return NT_STATUS_END_OF_FILE;

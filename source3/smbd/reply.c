@@ -1968,7 +1968,7 @@ void reply_search(struct smb_request *req)
 						  &date,
 						  check_descend,
 						  ask_sharemode);
-			if (errno != 0) {
+			if (errno == EIO) {
 				reply_nterror(req, NT_STATUS_FILE_CORRUPT_ERROR);
 				goto out;
 			}
