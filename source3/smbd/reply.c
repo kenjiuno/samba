@@ -1968,6 +1968,10 @@ void reply_search(struct smb_request *req)
 						  &date,
 						  check_descend,
 						  ask_sharemode);
+			if (errno == EIO) {
+				reply_nterror(req, NT_STATUS_FILE_CORRUPT_ERROR);
+				goto out;
+			}
 			if (!finished) {
 				char buf[DIR_STRUCT_SIZE];
 				memcpy(buf,status,21);

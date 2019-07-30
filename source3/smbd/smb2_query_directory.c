@@ -608,6 +608,9 @@ static bool smb2_query_directory_next_entry(struct tevent_req *req)
 			 * entry.
 			 */
 			return false;
+		} else if (NT_STATUS_EQUAL(status, NT_STATUS_FILE_CORRUPT_ERROR)) {
+			tevent_req_nterror(req, NT_STATUS_FILE_CORRUPT_ERROR);
+			return true;
 		} else if (state->num > 0) {
 			goto last_entry_done;
 		} else if (NT_STATUS_EQUAL(status, STATUS_MORE_ENTRIES)) {

@@ -1769,7 +1769,9 @@ const char *ReadDirName(struct smb_Dir *dirp, long *poffset,
 		dirp->file_number++;
 		return n;
 	}
-	*poffset = dirp->offset = END_OF_DIRECTORY_OFFSET;
+	if (errno == 0) {
+		*poffset = dirp->offset = END_OF_DIRECTORY_OFFSET;
+	}
 	*ptalloced = NULL;
 	return NULL;
 }
